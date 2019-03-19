@@ -2,6 +2,7 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import HTMLHead from '../components/html-head'
 import AppNavbar from '../components/app-navbar'
+import Extractor from '../components/extractor'
 import '../layouts/index.css'
 import { SampleCsvDef, SampleCsvRecord, getRecord } from '../graphql/sample-csv';
 
@@ -19,7 +20,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
       <AppNavbar />
       <section className="section">
         <div className="container">
-          <p>Container</p>
+          <Extractor />
         </div>
       </section>
     </>

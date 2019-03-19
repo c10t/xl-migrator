@@ -3,12 +3,14 @@ import * as React from 'react'
 export interface IconProps {
   name: string
   color?: 'info' | 'success' | 'warning' | 'danger'
+  isFileIcon?: boolean
 }
 
-const Icon: React.FC<IconProps> = ({ name, color }) => {
-  const hasTextColor = color ? `has-text-${color}` : '' 
+const Icon: React.FC<IconProps> = ({ name, color, isFileIcon }) => {
+  const hasTextColor = color ? `has-text-${color}` : ''
+  const iconType = isFileIcon ? 'file-icon' : 'icon'
   return (
-    <span className={`icon ${hasTextColor}`}>
+    <span className={`${iconType} ${hasTextColor}`}>
       <i className={`fas ${name}`}></i>
     </span>
   )
