@@ -6,9 +6,10 @@ import { Helmet } from 'react-helmet'
 const HTMLHead: React.FC = () => (
   <Helmet>
     <meta charSet="utf-8" />
-    <title>moog</title>
+    <title>xlmig</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </Helmet>
 )
 

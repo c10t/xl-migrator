@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `moneylog`
+    title: `xl-migrator`
   },
   plugins: [
     `gatsby-plugin-typescript`,

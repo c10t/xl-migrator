@@ -5,12 +5,12 @@ import '../layouts/index.css'
 import { SampleCsvDef, SampleCsvRecord, getRecord } from '../graphql/sample-csv';
 
 interface IndexProps {
-  gqlData: SampleCsvDef
+  data: SampleCsvDef
 }
 
-const Index: React.FC<IndexProps> = ({ gqlData }) => {
-  console.log(gqlData)
-  const data = getRecord(gqlData)
+const Index: React.FC<IndexProps> = ({ data }) => {
+  console.log(data)
+  const records = getRecord(data)
 
     return (
       <>
@@ -31,11 +31,8 @@ export const IndexQuery = graphql`
         node {
           id
           date
-          category
-          amount
-          y
-          m
-          d
+          name
+          score
         }
       }
     }
