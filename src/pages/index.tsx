@@ -19,9 +19,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
       <HTMLHead></HTMLHead>
       <AppNavbar />
       <section className="section">
-        <div className="container">
-          <Extractor />
-        </div>
+        <Extractor />
       </section>
     </>
   )
