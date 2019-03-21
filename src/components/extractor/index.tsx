@@ -20,27 +20,44 @@ const Extractor: React.FC = () => {
   return (
     <div className="container">
       <FileUpload fileLabel={fileLabel} fileName={fileName} fileUploadHandler={handleUploadFile} />
+      <TabTable contents={[
+        {id: 'foo1', title: 'foo', content: (<h2 className="title">foo</h2>)},
+        {id: 'baar', title: 'bar', content: 'baz'}
+      ]} />
     </div>
   )
 }
 
-const TabController: React.FC = () => (
-  <>
-    <div className="tabs">
-      <ul></ul>
-    </div>
-    {}
-  </>
-)
+interface TabTableProps {
+  contents: Array<{ id: string, title: string, content: React.ReactNode }>
+}
+
+const TabTable: React.FC<TabTableProps> = ({ contents }) => {
+  const [selected, setSelected] = React.useState(contents[0])
+
+  return (
+    <>
+      <Tab tabs={contents.map((content) => ({
+        id: content.id, 
+        title: content.title, 
+        isActive: selected.id === content.id,
+        handler: () => setSelected(content)
+        }))} />
+      {selected.content}
+    </>
+  )
+}
 
 interface TabProps {
-  tabs: Array<{ id: string, title: string, isActive?: boolean }>
+  tabs: Array<{ id: string, title: string, isActive?: boolean, handler: () => void }>
 }
 
 const Tab: React.FC<TabProps> = ({ tabs }) => (
   <div className="tabs">
     <ul>
-      {tabs.map(({id, title, isActive}) => isActive ? (<li key={id} className="is-active"><a>{title}</a></li>) : (<li key={id}><a>{title}</a></li>))}
+      {tabs.map(({id, title, isActive, handler}) => isActive ? 
+        (<li key={id} className="is-active"><a>{title}</a></li>) 
+        : (<li key={id}><a onClick={() => handler()}>{title}</a></li>))}
     </ul>
   </div>
 )
