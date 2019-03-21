@@ -135,20 +135,14 @@ const ConvertRuleForm: React.FC<ConvertRuleFormProps> = ({ columns }) => {
   return (
     <div className="box">
       <div className="field is-horizontal">
-        <div className="field-label is-normal">
-          <label className="label">Subject</label>
-        </div>
+        <FieldLabel label="column1" />
         <div className="field-body">
           <div className="field">
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select>
-                  <option>Business development</option>
-                  <option>Marketing</option>
-                  <option>Sales</option>
-                </select>
-              </div>
-            </div>
+            <SelectControl options={[
+              {id: '1', name: 'Business development'},
+              {id: '2', name: 'Marketing'},
+              {id: '3', name: 'Sales'}
+            ]}/>
             <p className="help is-danger">
               This field is required
             </p>
@@ -158,5 +152,21 @@ const ConvertRuleForm: React.FC<ConvertRuleFormProps> = ({ columns }) => {
     </div>
   )
 }
+
+const FieldLabel: React.FC<{ label: string }> = ({ label }) => (
+  <div className="field-label is-normal">
+    <label className="label"><input type="checkbox" />{label}</label>
+  </div>
+)
+
+const SelectControl: React.FC<{ options: Array<{id: string, name: string}> }> = ({ options }) => (
+  <div className="control">
+    <div className="select is-fullwidth">
+      <select>
+        {options.map(({id, name}) => (<option key={id}>{name}</option>))}
+      </select>
+    </div>
+  </div>
+)
 
 export default Extractor
