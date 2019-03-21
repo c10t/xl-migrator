@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled from 'styled-components'
 
 import Icon from '../atoms/icon'
 
@@ -19,14 +20,25 @@ const Extractor: React.FC = () => {
 
   return (
     <div className="container">
-      <FileUpload fileLabel={fileLabel} fileName={fileName} fileUploadHandler={handleUploadFile} />
+      <VerticalWrapper>
+        <FileUpload fileLabel={fileLabel} fileName={fileName} fileUploadHandler={handleUploadFile} />
+      </VerticalWrapper>
+      <VerticalWrapper>
       <TabTable contents={[
         {id: 'foo1', title: 'foo', content: (<h2 className="title">foo</h2>)},
         {id: 'baar', title: 'bar', content: 'baz'}
       ]} />
+      </VerticalWrapper>
     </div>
   )
 }
+
+const VerticalWrapper = styled.div`
+  background-color: #60d2b6;
+  & + & {
+    margin-top: 1rem;
+  }
+`
 
 interface TabTableProps {
   contents: Array<{ id: string, title: string, content: React.ReactNode }>
