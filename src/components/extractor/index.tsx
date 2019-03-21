@@ -50,14 +50,17 @@ const Extractor: React.FC = () => {
       ]} />
       </VerticalWrapper>
       <VerticalWrapper>
-        <h2 className="title is-4">Mapping Rule</h2>
+        <h2 className="title is-4">Convert Rule</h2>
       </VerticalWrapper>
       <VerticalWrapper>
         <TabTable contents={[
-          {id: 'baaz', title: 'barz', content: (<MappingRuleForm columns={[]} />)},
+          {id: 'baaz', title: 'barz', content: (<ConvertRuleForm columns={[]} />)},
           {id: 'baal', title: 'barl', content: (<h4 className="title is-4">baaaaaa</h4>)},
-          {id: 'baas', title: 'bars', content: (<MappingRuleForm columns={[]} />)}
+          {id: 'baas', title: 'bars', content: (<ConvertRuleForm columns={[]} />)}
         ]} />
+      </VerticalWrapper>
+      <VerticalWrapper>
+        <div><button className="button is-success is-fullwidth">EXPORT</button></div>
       </VerticalWrapper>
     </div>
   )
@@ -124,11 +127,11 @@ const FileUpload: React.FC<FileUploadProps> = ({ fileLabel, fileName, fileUpload
   </div>
 )
 
-interface MappingRuleFormProps {
+interface ConvertRuleFormProps {
   columns: string[]
 }
 
-const MappingRuleForm: React.FC<MappingRuleFormProps> = ({ columns }) => {
+const ConvertRuleForm: React.FC<ConvertRuleFormProps> = ({ columns }) => {
   return (
     <div className="box">
       <div className="field is-horizontal">
