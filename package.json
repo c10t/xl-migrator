@@ -10,6 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "ag-grid-community": "^20.1.0",
+    "ag-grid-react": "^20.1.1",
     "gatsby": "^2.1.30",
     "gatsby-plugin-react-helmet": "^3.0.9",
     "gatsby-plugin-styled-components": "^3.0.7",

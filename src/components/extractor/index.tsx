@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import Icon from '../atoms/icon'
+import AgTable from '../ag-table'
 
 const Extractor: React.FC = () => {
   const [fileName, setFileName] = React.useState('No file selected')
@@ -26,7 +27,19 @@ const Extractor: React.FC = () => {
       <VerticalWrapper>
       <TabTable contents={[
         {id: 'foo1', title: 'foo', content: (<h2 className="title">foo</h2>)},
-        {id: 'baar', title: 'bar', content: 'baz'}
+        {id: 'baar', title: 'bar', content: 'baz'},
+        {id: 'grid', title: 'qux', content: 
+          (<AgTable
+            columnDefs={[
+              { headerName: "Make", field: "make" },
+              { headerName: "Model", field: "model" },
+              { headerName: "Price", field: "price" },
+            ]}
+            rowData={[
+              { make: "Toyota", model: "Celica", price: 35000},
+              { make: "Ford", model: "Mondeo", price: 32000 },
+              { make: "Porsche", model: "Boxter", price: 72000 }
+            ].map( record => Object.entries(record).reduce((prev, [key, value]) => prev.set(key, value), new Map()) )} />)}, // fixme
       ]} />
       </VerticalWrapper>
     </div>
