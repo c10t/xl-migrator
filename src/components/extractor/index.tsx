@@ -22,12 +22,16 @@ const Extractor: React.FC = () => {
   return (
     <div className="container">
       <VerticalWrapper>
+        <h2 className="title is-4">Choose your file</h2>
+      </VerticalWrapper>
+      <VerticalWrapper>
         <FileUpload fileLabel={fileLabel} fileName={fileName} fileUploadHandler={handleUploadFile} />
       </VerticalWrapper>
       <VerticalWrapper>
+        <h2 className="title is-4">Import Result</h2>
+      </VerticalWrapper>
+      <VerticalWrapper>
       <TabTable contents={[
-        {id: 'foo1', title: 'foo', content: (<h2 className="title">foo</h2>)},
-        {id: 'baar', title: 'bar', content: 'baz'},
         {id: 'grid', title: 'qux', content: 
           (<AgTable
             columnDefs={[
@@ -39,15 +43,27 @@ const Extractor: React.FC = () => {
               { make: "Toyota", model: "Celica", price: 35000},
               { make: "Ford", model: "Mondeo", price: 32000 },
               { make: "Porsche", model: "Boxter", price: 72000 }
-            ].map( record => Object.entries(record).reduce((prev, [key, value]) => prev.set(key, value), new Map()) )} />)}, // fixme
+            ]} />)
+        },
+        {id: 'foo1', title: 'foo', content: (<h2 className="title">foo</h2>)},
+        {id: 'baar', title: 'bar', content: 'baz'}
       ]} />
+      </VerticalWrapper>
+      <VerticalWrapper>
+        <h2 className="title is-4">Mapping Rule</h2>
+      </VerticalWrapper>
+      <VerticalWrapper>
+        <TabTable contents={[
+          {id: 'baaz', title: 'barz', content: (<MappingRuleForm columns={[]} />)},
+          {id: 'baal', title: 'barl', content: (<h4 className="title is-4">baaaaaa</h4>)},
+          {id: 'baas', title: 'bars', content: (<MappingRuleForm columns={[]} />)}
+        ]} />
       </VerticalWrapper>
     </div>
   )
 }
 
 const VerticalWrapper = styled.div`
-  background-color: #60d2b6;
   & + & {
     margin-top: 1rem;
   }
@@ -59,6 +75,8 @@ interface TabTableProps {
 
 const TabTable: React.FC<TabTableProps> = ({ contents }) => {
   const [selected, setSelected] = React.useState(contents[0])
+
+  if (contents.length < 1) { return (<></>) }
 
   return (
     <>
@@ -105,5 +123,37 @@ const FileUpload: React.FC<FileUploadProps> = ({ fileLabel, fileName, fileUpload
     </label>
   </div>
 )
+
+interface MappingRuleFormProps {
+  columns: string[]
+}
+
+const MappingRuleForm: React.FC<MappingRuleFormProps> = ({ columns }) => {
+  return (
+    <div className="box">
+      <div className="field is-horizontal">
+        <div className="field-label is-normal">
+          <label className="label">Subject</label>
+        </div>
+        <div className="field-body">
+          <div className="field">
+            <div className="control">
+              <div className="select is-fullwidth">
+                <select>
+                  <option>Business development</option>
+                  <option>Marketing</option>
+                  <option>Sales</option>
+                </select>
+              </div>
+            </div>
+            <p className="help is-danger">
+              This field is required
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default Extractor
